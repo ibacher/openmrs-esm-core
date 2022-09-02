@@ -53,6 +53,9 @@ jobs:
       - name: Start local app shell
         run: yarn run:shell &
       - name: Clone tests
-        run: git clone git@github.com:openmrs/openmrs-test-3refapp.git
+        uses: actions/checkout@v3
+        with:
+          repository: openmrs/openmrs-test-3refapp
+          path: openmrs-test-3refapp
       - name: Run playwright tests
         run: cd openmrs-test-3refapp/packages/playwright && yarn install && yarn playwright test --project=chromium
