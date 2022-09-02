@@ -53,10 +53,8 @@ jobs:
         with:
           repository: openmrs/openmrs-test-3refapp
           path: openmrs-test-3refapp
-      - name: Setup Chrome
-        uses: browser-actions/setup-chrome@latest
       - name: Run playwright tests
-        run: cd openmrs-test-3refapp && yarn install && cd packages/playwright && yarn playwright test --project=chromium
+        run: cd openmrs-test-3refapp && yarn install && cd packages/playwright && yarn playwright install --project=chromium && yarn playwright test --project=chromium
         env:
           YARN_ENABLE_IMMUTABLE_INSTALLS: false
           UI_BASE_URL: "http://localhost:8080/openmrs/spa"
