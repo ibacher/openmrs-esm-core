@@ -59,3 +59,9 @@ jobs:
           YARN_ENABLE_IMMUTABLE_INSTALLS: false
           UI_BASE_URL: "http://localhost:8080/openmrs/spa"
           WS_BASE_URL: "http://localhost:8080/openmrs/ws"
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: playwright-reports
+          path: packages/playwright/test-results/
+          retention-days: 30
