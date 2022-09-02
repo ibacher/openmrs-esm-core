@@ -19,16 +19,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: "16.15"
-
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+          node-version: 18
+          cache: 'yarn'
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
@@ -58,4 +52,4 @@ jobs:
           repository: openmrs/openmrs-test-3refapp
           path: openmrs-test-3refapp
       - name: Run playwright tests
-        run: cd openmrs-test-3refapp/packages/playwright && yarn install && yarn playwright test --project=chromium
+        run: cd openmrs-test-3refapp && yarn install && yarn playwright test --project=chromium
