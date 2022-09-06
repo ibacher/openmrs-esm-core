@@ -63,5 +63,5 @@ jobs:
         if: always()
         with:
           name: playwright-reports
-          path: packages/playwright/test-results/
+          path: openmrs-test-3refapp/packages/playwright/test-results/
           retention-days: 30
